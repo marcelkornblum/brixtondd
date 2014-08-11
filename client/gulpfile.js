@@ -8,10 +8,10 @@ var imagemin = require('gulp-imagemin');
 var less = require('gulp-less');
 var gCheerio = require('gulp-cheerio');
 var ngHtml2js = require("gulp-ng-html2js");
-var ngmin = require('gulp-ngmin');
+var webserver = require('gulp-webserver');
+var ngAnnotate = require('gulp-ng-annotate');
 var htmlmin = require('gulp-htmlmin');
 var cssmin = require('gulp-cssmin');
-var packagejson = require('./package.json');
 var streamqueue = require('streamqueue');
 var rimraf = require('rimraf');
 var rename = require('gulp-rename');
@@ -19,6 +19,11 @@ var jshint = require('gulp-jshint');
 var jasmine = require('gulp-jasmine');
 var stylish = require('jshint-stylish');
 var domSrc = require('gulp-dom-src');
+var replace = require('gulp-replace');
+var watch = require('gulp-watch');
+var plumber = require('gulp-plumber');
+var filter = require('gulp-filter');
+var livereload = require('gulp-livereload');
 
 var htmlminOptions = {
     collapseBooleanAttributes: true,
@@ -31,13 +36,64 @@ var htmlminOptions = {
     removeStyleLinkTypeAttributes: true
 };
 
+var EXPRESS_PORT = 8080;
+var APP_ROOT = __dirname + '/starmap';
+var LIVERELOAD_PORT = 11111;
+
+var paths = {
+    scripts: ['**/*.js', '!node_modules/**', '!dist/**', '!temp/**', '!lib/**']
+};
+
+function startExpress() {
+    var express = require('express');
+    var app = express();
+    app.use(require('connect-livereload')({
+        port:LIVERELOAD_PORT
+    }));
+    app.use(express.static(APP_ROOT));
+    app.use('/node_modules', express.static(__dirname + '/node_modules'));
+    app.use('/bower_components', express.static(__dirname + '/bower_components'));
+    app.use('/fonts', express.static(__dirname + '/bower_components/bootstrap/fonts'));
+    app.use('/lib', express.static(__dirname + '/lib'));
+    app.listen(EXPRESS_PORT, '0.0.0.0');
+}
+
+var lr;
+function startLivereload() {
+    lr = require('tiny-lr')();
+    lr.listen(LIVERELOAD_PORT);
+}
+
+function notifyLivereload(event) {
+  var fileName = require('path').relative(APP_ROOT, event.path);
+  console.log('Reloading for changed file:', fileName);
+
+  lr.changed({
+    body: {
+      files: [fileName]
+    }
+  });
+}
+
+gulp.task('webserver', function () {
+  startExpress();
+  startLivereload();
+  gulp.watch([APP_ROOT + '/**/*.html', APP_ROOT + '/**/*.js'], notifyLivereload);
+});
+
+
+
+
 gulp.task('clean', function() {
     rimraf.sync('dist');
 });
 
 gulp.task('css', ['clean'], function() {
-    return gulp.src('app.less')
+    return gulp.src(APP_ROOT + '/app.less')
         .pipe(less())
+        .pipe(replace(/bower_components\/bootstrap\/dist\/fonts\//g, '/'))
+        .pipe(replace(/bower_components\/font-awesome\/fonts\//g, '/'))
+        .pipe(replace(/\/fonts\//g, '/'))
         .pipe(cssmin({keepSpecialComments: 0}))
         .pipe(rename('app.full.min.css'))
         .pipe(gulp.dest('dist/'));
@@ -45,13 +101,15 @@ gulp.task('css', ['clean'], function() {
 
 gulp.task('js', ['clean'], function() {
 
-    var templateStream = gulp.src(['!node_modules/**','!index.html','!_SpecRunner.html','!.grunt/**','!dist/**','!bower_components/**','**/*.html'])
+    var templateStream = gulp.src(['!node_modules/**','!index.html','!_SpecRunner.html','!.grunt/**','!dist/**','!temp/**','!bower_components/**', '**/*.html'])
         .pipe(htmlmin(htmlminOptions))
         .pipe(ngHtml2js({
-            moduleName: packagejson.name
+            moduleName: 'starmap',
+            stripPrefix: 'starmap/'
         }));
 
-    var jsStream = domSrc({file:'index.html',selector:'script[data-build!="exclude"]',attribute:'src'});
+    var jsStream = domSrc({file: 'starmap/index.html',selector:'script[data-build!="exclude"]',attribute:'src'});
+
 
     var combined = streamqueue({ objectMode: true });
 
@@ -59,13 +117,15 @@ gulp.task('js', ['clean'], function() {
     combined.queue(templateStream);
 
     return combined.done()
+        // .pipe(require('gulp-print')())
         .pipe(concat('app.full.min.js'))
-        .pipe(ngmin())
+        .pipe(replace(/\/fonts\//g, '/'))
+        .pipe(ngAnnotate())
         .pipe(uglify())
         .pipe(gulp.dest('dist/'));
 
 
-    /* 
+    /*
         Should be able to add to an existing stream easier, like:
         gulp.src([... partials html ...])
           .pipe(htmlmin())
@@ -81,7 +141,7 @@ gulp.task('js', ['clean'], function() {
 });
 
 gulp.task('indexHtml', ['clean'], function() {
-    return gulp.src('index.html')
+    return gulp.src(APP_ROOT + '/index.html')
         .pipe(gCheerio(function ($) {
             $('script[data-remove!="exclude"]').remove();
             $('link').remove();
@@ -93,25 +153,25 @@ gulp.task('indexHtml', ['clean'], function() {
 });
 
 gulp.task('images', ['clean'], function(){
-    return gulp.src('img/**')
+    return gulp.src(APP_ROOT + '/img/**')
         .pipe(imagemin())
         .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('fonts', ['clean'], function(){
-    return gulp.src('bower_components/font-awesome/fonts/**')
-        .pipe(gulp.dest('dist/bower_components/font-awesome/fonts/'));
+    return gulp.src(['bower_components/font-awesome/fonts/**', 'bower_components/bootstrap/dist/fonts/**'])
+        .pipe(gulp.dest('dist/'));
 });
 
 gulp.task('jshint', function(){
-    gulp.src(['!node_modules/**','!.grunt/**','!dist/**','!bower_components/**','**/*.js'])
+    gulp.src(['!node_modules/**','!.grunt/**','!dist/**','!bower_components/**', APP_ROOT + '/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('build', ['clean', 'css', 'js', 'indexHtml', 'images', 'fonts']);
-
-/* 
+gulp.task('default', ['webserver']);
+/*
 
 -specifying clean dependency on each task is ugly
 https://github.com/robrich/orchestrator/issues/26
