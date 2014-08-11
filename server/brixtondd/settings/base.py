@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'corsheaders',
     'south',
+    'storages',
     # 'annoying',
     # 'social.apps.django_app.default',
     # 'django.contrib.comments',
@@ -237,3 +238,9 @@ CORS_ORIGIN_WHITELIST = (
     # 'brixtondd.wilderness.io',
     '127.0.0.1'
 )
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_STORAGE_BUCKET_NAME = 'brixtondesignweek.com'
+STATIC_URL = "https://%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
+STATIC_ROOT = ''
