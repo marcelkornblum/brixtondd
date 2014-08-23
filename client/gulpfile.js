@@ -37,7 +37,7 @@ var htmlminOptions = {
 };
 
 var EXPRESS_PORT = 8080;
-var APP_ROOT = __dirname + '/starmap';
+var APP_ROOT = __dirname + '/brixtondd';
 var LIVERELOAD_PORT = 11111;
 
 var paths = {
@@ -104,11 +104,11 @@ gulp.task('js', ['clean'], function() {
     var templateStream = gulp.src(['!node_modules/**','!index.html','!_SpecRunner.html','!.grunt/**','!dist/**','!temp/**','!bower_components/**', '**/*.html'])
         .pipe(htmlmin(htmlminOptions))
         .pipe(ngHtml2js({
-            moduleName: 'starmap',
-            stripPrefix: 'starmap/'
+            moduleName: 'brixtondd',
+            stripPrefix: 'brixtondd/'
         }));
 
-    var jsStream = domSrc({file: 'starmap/index.html',selector:'script[data-build!="exclude"]',attribute:'src'});
+    var jsStream = domSrc({file: 'brixtondd/index.html',selector:'script[data-build!="exclude"]',attribute:'src'});
 
 
     var combined = streamqueue({ objectMode: true });
