@@ -1,6 +1,7 @@
 /*/settings/local.py
 /*/settings/secret.py
 /*/static/
+/*/publish/
 /*/media/
 /*/dev.db
 /*/.coverage

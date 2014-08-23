@@ -1,9 +1,8 @@
 from django.contrib import admin
 from brixtondd.models import *
 
-# class StarAdmin (admin.ModelAdmin):
-#     list_display = ('starid', 'propername', 'bayerflamsteed', 'distance', 'mag', 'absmag', 'spectrum', 'colorindex')
-#     search_fields = ['propername', 'bayerflamsteed', 'gliese', 'spectrum', 'colorindex', 'starid']
+# class ArtistAdmin (admin.ModelAdmin):
+#     search_fields = ['name']
 
 admin.site.register(Artist)
 admin.site.register(Artwork)

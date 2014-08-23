@@ -8,6 +8,9 @@ class Artist(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         pass
 
@@ -22,6 +25,9 @@ class Artwork(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         pass
 
@@ -35,6 +41,9 @@ class Zone(models.Model):
     search_terms = models.CharField(max_length=200, null=True, blank=True)
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         pass
@@ -53,6 +62,9 @@ class Venue(models.Model):
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         pass
 
@@ -68,6 +80,9 @@ class Event(models.Model):
     search_terms = models.CharField(max_length=200, null=True, blank=True)
     added = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         pass
