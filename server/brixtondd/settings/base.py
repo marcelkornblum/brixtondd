@@ -242,6 +242,10 @@ CORS_ORIGIN_WHITELIST = (
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_STORAGE_BUCKET_NAME = 'brixtondesignweek.com'
-STATIC_URL = "http://%s.s3.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
+AWS_STATIC_BUCKET_NAME =  'brixtondesignweek.com'
+AWS_STATIC_CUSTOM_DOMAIN = AWS_STATIC_BUCKET_NAME
+STATIC_URL = "http://%s.s3-website-eu-west-1.amazonaws.com/" % AWS_STORAGE_BUCKET_NAME
 STATIC_ROOT = ''
 AWS_S3_SECURE_URLS = False
+AWS_QUERYSTRING_AUTH = False
+
