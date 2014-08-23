@@ -20,3 +20,4 @@ shortuuid==0.4.2
 six==1.7.2
 sqlparse==0.1.11
 django-storages==1.1.8
+tinys3==0.1.11
