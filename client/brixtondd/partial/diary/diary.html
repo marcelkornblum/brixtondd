@@ -1,4 +1,26 @@
 <div class="col-md-12">
     <page-header title="what's on"></page-header>
-<a ui-sref="root.events.list">ALL Events</a>
+
+    <ul class="nav nav-pills">
+       <!--  <li class="dropdown pull-right">
+            <a class="dropdown-toggle btn btn-default navbar-btn" data-toggle="dropdown" href="#">
+                Sort By ({{sortField.name}}) <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a ng-click="sortField={name:'Date',orderBy:'event.start'}">Date</a></li>
+                <li><a ng-click="sortField={name:'Location',orderBy:'event.zone'}">Location</a></li>
+            </ul>
+        </li> -->
+        <li class=""><a class="btn btn-default navbar-btn" ui-sref="root.events.list">All Events</a></li>
+    </ul>
+
+    <div class="list-group">
+        <a ng-repeat="event in events | orderBy:sortField.orderBy" ui-sref="root.events.view({ id: event.pk })" class="list-group-item">
+            <h4 class="list-group-item-heading">{{event.fields.name}}</h4>
+            <p class="list-group-item-text">{{event.fields.description}}</p>
+            <p class="pull-right">{{event.fields.startStr}} - {{event.fields.toCome}}</p>
+        </a>
+    </div>
+
+
 </div>

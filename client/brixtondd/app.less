@@ -16,6 +16,7 @@
 @import "partial/zone-view/zone-view.less";
 @import "partial/artwork-view/artwork-view.less";
 @import "directive/page-header/page-header.less";
+@import "navbar-override.less";
 /* Add Component LESS Above */
 
 /* Required for Angular UI Bootstrap */
@@ -37,6 +38,7 @@
 
 body {
     margin-top: @navbar-height + 20;
+    margin-bottom: @navbar-height + 20;
 }
 
 .navbar-header,
@@ -77,6 +79,27 @@ body {
     vertical-align: middle;
 }
 
+.nav-pills .dropdown-menu > li > a {
+    padding: 15px 20px;
+}
+
 .form-control {
     margin: 0 0 20px 0;
+}
+
+.btn-wide {
+    width: 100%
+}
+
+h3.panel-heading {
+    font-weight: bold;
+}
+
+h4.list-group-item-heading {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.form-horizontal p.control-label {
+    text-align: left;
 }

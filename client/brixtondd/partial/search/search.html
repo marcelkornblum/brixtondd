@@ -8,7 +8,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Events</div>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="event in fEvents = (events | filter:searchText)"><a ui-sref="root.events.view({ id: event.pk })">{{event.fields.name}}</a></li>
+                <li class="list-group-item" ng-repeat="event in fEvents = (events | filter:searchText | orderBy:event.start)"><a ui-sref="root.events.view({ id: event.pk })">{{event.fields.name}}</a></li>
             </ul>
         </div>
     </div>
@@ -16,7 +16,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Venues</div>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="venue in fVenues = (venues | filter:searchText)"><a ui-sref="root.venue.view({ id: venue.pk })">{{venue.fields.name}}</a></li>
+                <li class="list-group-item" ng-repeat="venue in fVenues = (venues | filter:searchText | orderBy:venue.name)"><a ui-sref="root.venue.view({ id: venue.pk })">{{venue.fields.name}}</a></li>
             </ul>
         </div>
     </div>
@@ -24,7 +24,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Artists</div>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="artist in fArtists = (artists | filter:searchText)"><a ui-sref="root.artists.view({ id: artist.pk })">{{artist.fields.name}}</a></li>
+                <li class="list-group-item" ng-repeat="artist in fArtists = (artists | filter:searchText | orderBy:artist.name)"><a ui-sref="root.artists.view({ id: artist.pk })">{{artist.fields.name}}</a></li>
             </ul>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Art</div>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="artwork in fArtworks = (artworks | filter:searchText)"><a ui-sref="root.artists.view.art({ id: artist.pk, art_id: artwork.pk })">{{artwork.fields.name}}</a></li>
+                <li class="list-group-item" ng-repeat="artwork in fArtworks = (artworks | filter:searchText | orderBy:artwork.name)"><a ui-sref="root.artists.view.art({ id: artist.pk, art_id: artwork.pk })">{{artwork.fields.name}}</a></li>
             </ul>
         </div>
     </div>
@@ -40,7 +40,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">Zones</div>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="zone in fZones = (zones | filter:searchText)"><a ui-sref="root.artists.view({ id: artist.pk })">{{zone.fields.name}}</a></li>
+                <li class="list-group-item" ng-repeat="zone in fZones = (zones | filter:searchText | orderBy:zone.name)"><a ui-sref="root.artists.view({ id: artist.pk })">{{zone.fields.name}}</a></li>
             </ul>
         </div>
     </div>

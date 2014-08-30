@@ -1,7 +1,11 @@
 <div class="col-md-12">
+    <page-header title="events" back="true"></page-header>
 
-LIST
-    <ul>
-        <li ng-repeat="event in events"><a ui-sref="root.events.view({ id: event.pk })">{{event.fields.name}}</a></li>
-    </ul>
+    <div class="list-group">
+        <a ng-repeat="event in events | orderBy:event.start" ui-sref="root.events.view({ id: event.pk })" class="list-group-item">
+            <h4 class="list-group-item-heading">{{event.fields.name}}</h4>
+            <p class="list-group-item-text">{{event.fields.description}}</p>
+
+        </a>
+    </div>
 </div>

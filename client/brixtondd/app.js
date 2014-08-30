@@ -17,17 +17,24 @@ angular.module('brixtondd')
         });
     })
 
-angular.module('brixtondd').run(function($rootScope) {
-
-    $rootScope.safeApply = function(fn) {
-        var phase = $rootScope.$$phase;
-        if (phase === '$apply' || phase === '$digest') {
-            if (fn && (typeof(fn) === 'function')) {
-                fn();
+angular.module('brixtondd')
+    .run(function($rootScope) {
+        $rootScope.safeApply = function(fn) {
+            var phase = $rootScope.$$phase;
+            if (phase === '$apply' || phase === '$digest') {
+                if (fn && (typeof(fn) === 'function')) {
+                    fn();
+                }
+            } else {
+                this.$apply(fn);
             }
-        } else {
-            this.$apply(fn);
-        }
-    };
+        };
+    })
 
-});
+    // .run(function($rootScope, $state) {
+    //     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+    //         console.log('statechange');
+    //         $rootScope.lastState = fromState;
+    //         $rootScope.lastParams = fromParams;
+    //     });
+    // });

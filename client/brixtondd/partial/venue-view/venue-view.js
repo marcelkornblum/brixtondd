@@ -1,5 +1,5 @@
 angular.module('brixtondd')
-    .controller('VenueViewCtrl',function($scope, $stateParams, venues, events){
+    .controller('VenueViewCtrl',function($scope, $rootScope, $stateParams, venues, events){
 
         $scope.id = $stateParams.id;
         $scope.venue = venues.getById($scope.id);
