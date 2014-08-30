@@ -1,4 +1,4 @@
-angular.module('events', ['ui.bootstrap','ui.utils','ui.router','ngAnimate']);
+angular.module('events', ['ui.bootstrap','ui.utils','ui.router', 'ui.router.stateHelper','ngAnimate', 'restangular']);
 
 angular.module('events')
     .config(function($stateProvider) {
@@ -8,6 +8,6 @@ angular.module('events')
     });
 
 angular.module('events')
-    .controller('EventsCtrl',function($scope, $log, $state, $stateParams){
-
+    .controller('EventsCtrl',function($scope, $log, $state, $stateParams, eventsList){
+        $scope.events = eventsList;
     });

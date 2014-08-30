@@ -1,4 +1,5 @@
-angular.module('events').controller('EventListCtrl',function($scope){
+angular.module('events')
+    .controller('EventListCtrl',function($scope){
 
 
-});
+    });

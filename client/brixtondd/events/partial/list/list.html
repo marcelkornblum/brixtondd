@@ -1,4 +1,7 @@
 <div class="col-md-12">
 
 LIST
+    <ul>
+        <li ng-repeat="event in events"><a ui-sref="root.events.view({ id: event.pk })">{{event.fields.name}}</a></li>
+    </ul>
 </div>

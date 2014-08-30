@@ -1,4 +1,6 @@
 <div class="col-md-12">
 VENUES
-
+    <ul>
+        <li ng-repeat="venue in venues"><a ui-sref="root.venues.view({ id: venue.pk })">{{venue.fields.name}}</a></li>
+    </ul>
 </div>

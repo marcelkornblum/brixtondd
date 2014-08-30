@@ -1,4 +1,7 @@
 <div class="col-md-12">
 ARTISTS
 
+    <ul>
+        <li ng-repeat="artist in artists"><a ui-sref="root.artists.view({ id: artist.pk })">{{artist.fields.name}}</a></li>
+    </ul>
 </div>

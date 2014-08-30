@@ -4,13 +4,7 @@ angular.module('brixtondd')
             name: 'root',
             templateUrl: 'partial/root/root.html',
             abstract: true,
-            // url: '',
             controller: 'RootCtrl',
-            resolve: {
-                // authorize: function(authorization) {
-                //     return authorization.authorize();
-                // },
-            },
             children: [
                 {
                     name: 'home',
@@ -26,22 +20,86 @@ angular.module('brixtondd')
                 },
                 {
                     name: 'venues',
+                    abstract: true,
                     url: '/venues',
                     controller: 'VenuesCtrl',
-                    templateUrl: 'partial/venues/venues.html',
+                    templateUrl: 'partial/abstract.html',
+                    resolve: {
+                        venuesList: function(venues) {
+                            return venues.getList();
+                        }
+                    },
+                    children: [
+                        {
+                            name: 'list',
+                            url: '',
+                            controller: 'VenuesCtrl',
+                            templateUrl: 'partial/venues/venues.html',
+                        },
+                        {
+                            name: 'view',
+                            url: '/view/:id',
+                            controller: 'VenueViewCtrl',
+                            templateUrl: 'partial/venue-view/venue-view.html',
+                        }
+                    ]
                 },
                 {
                     name: 'artists',
+                    abstract: true,
                     url: '/artists',
                     controller: 'ArtistsCtrl',
-                    templateUrl: 'partial/artists/artists.html',
+                    templateUrl: 'partial/abstract.html',
+                    resolve: {
+                        artistsList: function(artists) {
+                            return artists.getList();
+                        }
+                    },
+                    children: [
+                        {
+                            name: 'list',
+                            url: '',
+                            controller: 'ArtistsCtrl',
+                            templateUrl: 'partial/artists/artists.html',
+                        },
+                        {
+                            name: 'view',
+                            url: '/view/:id',
+                            controller: 'ArtistViewCtrl',
+                            templateUrl: 'partial/artist-view/artist-view.html',
+                            resolve: {
+                                artworksList: function($stateParams, artworks) {
+                                    return artworks.getListById($stateParams.id);
+                                }
+                            },
+                            children: [
+                                {
+                                    name: 'art',
+                                    url: '/art/:art_id',
+                                    controller: 'ArtworkViewCtrl',
+                                    templateUrl: 'partial/artwork-view/artwork-view.html'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: 'search',
+                    url: '/search',
+                    controller: 'SearchCtrl',
+                    templateUrl: 'partial/search/search.html',
                 },
                 {
                     name: 'events',
                     abstract: true,
                     url: '/events',
                     controller: 'EventsCtrl',
-                    templateUrl: 'events/partial/events.html',
+                    templateUrl: 'partial/abstract.html',
+                    resolve: {
+                        eventsList: function(events) {
+                            return events.getList();
+                        }
+                    },
                     children: [
                         {
                             name: 'list',

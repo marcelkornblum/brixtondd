@@ -1,4 +1,17 @@
-<div class="col-md-12">
-    <div ui-view>
-    </div>
-</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li ng-class="{active:$state.includes('root.home')}"><a ui-sref="root.home"><span class="glyphicon glyphicon-info-sign"></span> About</a></li>
+                <li ng-class="{active:$state.includes('root.diary') || $state.includes('root.events')}"><a ui-sref="root.diary"><span class="glyphicon glyphicon-calendar"></span> What's On</a></li>
+                <li ng-class="{active:$state.includes('root.artists')}"><a ui-sref="root.artists.list"><span class="glyphicon glyphicon-user"></span> Artists</a></li>
+                <li ng-class="{active:$state.includes('root.events')}"><a ui-sref="root.venues.list"><span class="glyphicon glyphicon-map-marker"></span> Venues</a></li>
+                <li ng-class="{active:$state.includes('root.search')}"><a ui-sref="root.search"><span class="glyphicon glyphicon-search"></span> Search</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div ui-view></div>
