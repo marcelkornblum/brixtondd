@@ -1,4 +1,4 @@
-angular.module('brixtondd', ['ui.bootstrap','ui.utils','ui.router','ngAnimate']);
+angular.module('brixtondd', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ui.router.stateHelper', 'ngAnimate', 'restangular', 'events']);
 
 angular.module('brixtondd').config(function($stateProvider, $urlRouterProvider) {
 
