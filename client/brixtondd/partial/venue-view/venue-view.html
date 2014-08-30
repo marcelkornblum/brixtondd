@@ -10,6 +10,9 @@
                 <h4 class="list-group-item-heading">Address</h4>
                 <p class="list-group-item-text"><a href="http://maps.google.com/maps?q={{venue.fields.address}}">{{venue.fields.address}}</a></p>
             </li>
+            <li class="list-group-item" ng-show="venue.fields.photo !== ''">
+                <img src="http://brixtondesignweek.com/{{venue.fields.photo}}">
+            </li>
             <li class="list-group-item" ng-show="venue.fields.description !== ''">
                 <p>{{venue.fields.description}}</p>
             </li>

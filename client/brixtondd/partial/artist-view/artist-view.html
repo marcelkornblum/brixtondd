@@ -31,8 +31,9 @@
             <h3 class="panel-title">Pieces by this artist</h3>
         </div>
         <div class="list-group">
+            <div ui-view></div>
             <a ng-repeat="artwork in artworks" ui-sref="root.artists.view.art({ id: artist.pk, art_id: artwork.pk })" class="list-group-item">{{artwork.fields.name}}</a>
         </div>
     </div>
 </div>
-<div ui-view></div>
+
