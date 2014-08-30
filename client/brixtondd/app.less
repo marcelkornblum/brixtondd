@@ -15,6 +15,7 @@
 @import "partial/venue-view/venue-view.less";
 @import "partial/zone-view/zone-view.less";
 @import "partial/artwork-view/artwork-view.less";
+@import "directive/page-header/page-header.less";
 /* Add Component LESS Above */
 
 /* Required for Angular UI Bootstrap */
@@ -33,3 +34,32 @@
 //}
 
 @icon-font-path:          "/fonts/";
+
+body {
+    margin-top: @navbar-height;
+}
+
+.navbar-header,
+.nav.navbar-nav {
+    width: 100%;
+}
+
+.navbar-nav > li {
+    width: 20%;
+    text-align: center;
+}
+
+.navbar-fixed-top .container {
+    text-align: center;
+}
+
+.navbar-fixed-top h1 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 15px 20px;
+    text-transform: capitalize;
+}
+
+.form-control {
+    margin: 20px 0;
+}
