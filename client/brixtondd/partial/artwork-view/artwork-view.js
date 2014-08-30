@@ -4,4 +4,5 @@ angular.module('brixtondd')
         $scope.artId = $stateParams.art_id;
         $scope.artwork = artworks.getById($scope.artId);
 
+
     });

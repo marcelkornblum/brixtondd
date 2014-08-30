@@ -22,6 +22,17 @@ angular.module('events')
                 }
                 return p.promise;
             },
+            getListByVenueId: function (id) {
+                var p = $q.defer();
+                this.getList()
+                    .then(function(list) {
+                        var relevant = _.filter(list, function(item) {
+                            return item.fields.venue === +id;
+                        });
+                        p.resolve(relevant);
+                    });
+                return p.promise;
+            },
             getById: function (id) {
                 return _.find(collection, function(e) {
                     return e.pk === +id;

@@ -22,7 +22,7 @@ angular.module('events')
                 }
                 return p.promise;
             },
-            getListById: function (id) {
+            getListByArtistId: function (id) {
                 var p = $q.defer();
                 this.getList()
                     .then(function(list) {

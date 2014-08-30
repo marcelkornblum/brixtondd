@@ -5,6 +5,20 @@ angular.module('brixtondd')
             templateUrl: 'partial/root/root.html',
             abstract: true,
             controller: 'RootCtrl',
+            resolve: {
+                venuesList: function(venues) {
+                    return venues.getList();
+                },
+                artistsList: function(artists) {
+                    return artists.getList();
+                },
+                artworksList: function($stateParams, artworks) {
+                    return artworks.getList();
+                },
+                eventsList: function(events) {
+                    return events.getList();
+                }
+            },
             children: [
                 {
                     name: 'home',
@@ -24,11 +38,6 @@ angular.module('brixtondd')
                     url: '/venues',
                     controller: 'VenuesCtrl',
                     templateUrl: 'partial/abstract.html',
-                    resolve: {
-                        venuesList: function(venues) {
-                            return venues.getList();
-                        }
-                    },
                     children: [
                         {
                             name: 'list',
@@ -50,11 +59,6 @@ angular.module('brixtondd')
                     url: '/artists',
                     controller: 'ArtistsCtrl',
                     templateUrl: 'partial/abstract.html',
-                    resolve: {
-                        artistsList: function(artists) {
-                            return artists.getList();
-                        }
-                    },
                     children: [
                         {
                             name: 'list',
@@ -67,11 +71,6 @@ angular.module('brixtondd')
                             url: '/view/:id',
                             controller: 'ArtistViewCtrl',
                             templateUrl: 'partial/artist-view/artist-view.html',
-                            resolve: {
-                                artworksList: function($stateParams, artworks) {
-                                    return artworks.getListById($stateParams.id);
-                                }
-                            },
                             children: [
                                 {
                                     name: 'art',
@@ -95,11 +94,6 @@ angular.module('brixtondd')
                     url: '/events',
                     controller: 'EventsCtrl',
                     templateUrl: 'partial/abstract.html',
-                    resolve: {
-                        eventsList: function(events) {
-                            return events.getList();
-                        }
-                    },
                     children: [
                         {
                             name: 'list',

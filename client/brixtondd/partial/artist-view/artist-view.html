@@ -1,13 +1,38 @@
 <div class="col-md-12">
-    <page-header title="artists"></page-header>
-DETAILS
-ID: {{id}}
-{{artist.fields.name}}
-<br>
-ART
+    <page-header title="artists" back="root.artists.list"></page-header>
 
-    <ul>
-        <li ng-repeat="artwork in artworks"><a ui-sref="root.artists.view.art({ id: artist.pk, art_id: artwork.pk })">{{artwork.fields.name}}</a></li>
-    </ul>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{artist.fields.name}}</h3>
+        </div>
+        <ul class="list-group">
+            <li class="list-group-item" ng-show="artist.fields.photo !== ''">
+                <img src="http://brixtondesignweek.com/{{artist.fields.photo}}">
+            </li>
+            <li class="list-group-item" ng-show="artist.fields.description !== ''">
+                <p>{{artist.fields.description}}</p>
+            </li>
+        </ul>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Events by this artist</h3>
+        </div>
+        <div class="list-group">
+            <a ng-repeat="event in events" ui-sref="root.events.view({ id: event.pk })" class="list-group-item">
+                {{event.fields.name}}
+            </a>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Pieces by this artist</h3>
+        </div>
+        <div class="list-group">
+            <a ng-repeat="artwork in artworks" ui-sref="root.artists.view.art({ id: artist.pk, art_id: artwork.pk })" class="list-group-item">{{artwork.fields.name}}</a>
+        </div>
+    </div>
 </div>
 <div ui-view></div>

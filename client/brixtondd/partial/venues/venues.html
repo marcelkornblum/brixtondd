@@ -1,6 +1,10 @@
 <div class="col-md-12">
     <page-header title="venues"></page-header>
-    <ul>
-        <li ng-repeat="venue in venues"><a ui-sref="root.venues.view({ id: venue.pk })">{{venue.fields.name}}</a></li>
-    </ul>
+
+    <div class="list-group">
+        <a ng-repeat="venue in venues" ui-sref="root.venues.view({ id: venue.pk })" class="list-group-item">
+            <span class="badge">{{venue.numEvents}}</span>
+            {{venue.fields.name}}
+        </a>
+    </div>
 </div>

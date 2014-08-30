@@ -1,7 +1,10 @@
 <div class="col-md-12">
     <page-header title="artists"></page-header>
 
-    <ul>
-        <li ng-repeat="artist in artists"><a ui-sref="root.artists.view({ id: artist.pk })">{{artist.fields.name}}</a></li>
-    </ul>
+    <div class="list-group">
+        <a ng-repeat="artist in artists" ui-sref="root.artists.view({ id: artist.pk })" class="list-group-item">
+            <span class="badge">{{artist.numEvents}}</span>
+            {{artist.fields.name}}
+        </a>
+    </div>
 </div>
