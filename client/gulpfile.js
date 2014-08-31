@@ -101,7 +101,7 @@ gulp.task('css', ['clean'], function() {
 
 gulp.task('js', ['clean'], function() {
 
-    var templateStream = gulp.src(['!node_modules/**','!index.html','!_SpecRunner.html','!.grunt/**','!dist/**','!temp/**','!bower_components/**', '**/*.html'])
+    var templateStream = gulp.src(['!node_modules/**','!' + APP_ROOT + '/index.html','!_SpecRunner.html','!.grunt/**','!dist/**','!temp/**','!bower_components/**', '**/*.html'])
         .pipe(htmlmin(htmlminOptions))
         .pipe(ngHtml2js({
             moduleName: 'brixtondd',
@@ -121,7 +121,10 @@ gulp.task('js', ['clean'], function() {
         .pipe(concat('app.full.min.js'))
         .pipe(replace(/\/fonts\//g, '/'))
         .pipe(ngAnnotate())
-        .pipe(uglify())
+        .pipe(uglify({
+            mangle:false,
+            // compress: false
+        }))
         .pipe(gulp.dest('dist/'));
 
 });
@@ -130,7 +133,7 @@ gulp.task('indexHtml', ['clean'], function() {
     return gulp.src(APP_ROOT + '/index.html')
         .pipe(gCheerio(function ($) {
             $('script[data-remove!="exclude"]').remove();
-            $('link').remove();
+            $('link[data-remove!="exclude"]').remove();
             $('body').append('<script src="app.full.min.js"></script>');
             $('head').append('<link rel="stylesheet" href="app.full.min.css">');
         }))

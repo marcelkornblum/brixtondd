@@ -13,7 +13,5 @@ angular.module('brixtondd')
             evt.fields.endStr = moment(evt.fields.end).format("hh:mm MMM D");
         });
 
-        console.log($scope.events);
-
         $scope.now = moment().calendar();
     });

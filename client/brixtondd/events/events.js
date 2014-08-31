@@ -1,4 +1,4 @@
-angular.module('events', ['ui.bootstrap','ui.utils','ui.router', 'ui.router.stateHelper','ngAnimate', 'restangular']);
+angular.module('events', ['ui.bootstrap','ui.router', 'ui.router.stateHelper', 'restangular']);
 
 angular.module('events')
     .config(function($stateProvider) {

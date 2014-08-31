@@ -9,7 +9,7 @@
 <body>
 
   <!-- JS from Bower Components -->
-  <script src="../bower_components/less.js/dist/less-1.6.2.js" data-concat="false"></script>
+  <script src="../bower_components/less.js/dist/less-1.6.2.js" data-build="exclude"></script>
   <script src="../bower_components/jquery/jquery.js"></script>
   <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="../bower_components/underscore/underscore.js"></script>
@@ -17,11 +17,11 @@
   <script src="../bower_components/angular/angular.js"></script>
   <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="../bower_components/angular-ui-router.stateHelper/statehelper.min.js"></script>
-  <script src="../bower_components/angular-animate/angular-animate.js"></script>
+  <!-- // <script src="../bower_components/angular-animate/angular-animate.js"></script> -->
   <script src="../bower_components/restangular/dist/restangular.min.js"></script>
   <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-  <script src="../bower_components/angular-touch/angular-touch.js"></script>
-  <script src="../bower_components/angular-ui-utils/ui-utils.js"></script>
+  <!-- // <script src="../bower_components/angular-touch/angular-touch.js"></script> -->
+  <!-- // <script src="../bower_components/angular-ui-utils/ui-utils.js"></script> -->
   <!-- Add New Bower Component JS Above -->
 
 
@@ -30,10 +30,15 @@
   <script src="states.js"></script>
   <script src="partial/root/root.js"></script>
   <script src="partial/home/home.js"></script>
+  <script src="partial/search/search.js"></script>
   <script src="partial/diary/diary.js"></script>
   <script src="partial/venues/venues.js"></script>
+  <script src="partial/venue-view/venue-view.js"></script>
   <script src="partial/artists/artists.js"></script>
-  <script src="partial/search/search.js"></script>
+  <script src="partial/artist-view/artist-view.js"></script>
+  <script src="partial/artwork-view/artwork-view.js"></script>
+  <script src="partial/zone-view/zone-view.js"></script>
+  <script src="directive/page-header/page-header.js"></script>
   <script src="events/events.js"></script>
   <script src="events/partial/list/list.js"></script>
   <script src="events/partial/view/view.js"></script>
@@ -42,11 +47,6 @@
   <script src="events/service/venues.js"></script>
   <script src="events/service/zones.js"></script>
   <script src="events/service/events.js"></script>
-  <script src="partial/artist-view/artist-view.js"></script>
-  <script src="partial/venue-view/venue-view.js"></script>
-  <script src="partial/zone-view/zone-view.js"></script>
-  <script src="partial/artwork-view/artwork-view.js"></script>
-  <script src="directive/page-header/page-header.js"></script>
   <!-- Add New Component JS Above -->
 
   <div>
@@ -57,6 +57,15 @@
       </div>
     </div>
   </div>
+
+  <script data-remove="exclude">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-54106395-2', 'auto');
+    ga('send', 'pageview');
+  </script>
 
 </body>
 </html>
