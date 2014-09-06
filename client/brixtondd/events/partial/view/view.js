@@ -4,6 +4,7 @@ angular.module('events')
         $scope.evt = _.find(eventsList, function(evt) {
             return evt.pk = $scope.id;
         });
+        // console.log('find evt', $scope.id, $scope.evt, eventsList);
 
         $scope.artists = _.filter(artistsList, function(artist) {
             return _.indexOf($scope.evt.fields.artists, artist.pk) >= 0;

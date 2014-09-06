@@ -56,7 +56,7 @@ angular.module('brixtondd')
                 {
                     name: 'artists',
                     abstract: true,
-                    url: '/artists',
+                    url: '/designers',
                     controller: 'ArtistsCtrl',
                     templateUrl: 'partial/abstract.html',
                     children: [

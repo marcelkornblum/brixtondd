@@ -7,6 +7,7 @@ angular.module('brixtondd')
             name:'Date',
             orderBy:'event.start'
         }
+        // console.log('diary', eventsList);
 
         _.each($scope.events, function (evt) {
             evt.fields.startStr = moment(evt.fields.start).format("hh:mm MMM D");

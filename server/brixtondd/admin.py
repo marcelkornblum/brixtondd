@@ -5,6 +5,7 @@ from brixtondd.views import write_files
 # class ArtistAdmin (admin.ModelAdmin):
 #     search_fields = ['name']
 
+admin.site.register(Homepage)
 admin.site.register(Artist)
 admin.site.register(Artwork)
 admin.site.register(Zone)

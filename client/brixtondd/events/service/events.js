@@ -10,6 +10,7 @@ angular.module('events')
                     Restangular.all('events.json').getList()
                         .then(function(r) {
                             collection = r;
+                            console.log('evts getlist', collection);
                             p.resolve(collection);
                             resolved = true;
                         }, function(r) {
