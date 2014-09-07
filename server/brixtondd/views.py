@@ -44,15 +44,15 @@ def write_files(request):
         json_serializer = serializers.get_serializer('json')()
         conn = tinys3.Connection(AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, default_bucket=AWS_STORAGE_BUCKET_NAME, endpoint='s3-eu-west-1.amazonaws.com', tls=True)
 
-        data = Event.objects.select_related().order_by('start')
+        events = data = Event.objects.select_related().order_by('start')
         with open(ABS_PATH('publish') + '/events.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
 
-        content = render_to_string('list.html', {'events': data})
+        content = render_to_string('list.html', {'events': events})
         with open(ABS_PATH('publish') + '/list.html', 'w') as static_file:
             static_file.write(content)
 
-        data = Artist.objects.all()
+        artists = data = Artist.objects.all()
         with open(ABS_PATH('publish') + '/artists.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
 
@@ -64,13 +64,17 @@ def write_files(request):
         with open(ABS_PATH('publish') + '/zones.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
 
-        data = Venue.objects.all()
+        venues = data = Venue.objects.all()
         with open(ABS_PATH('publish') + '/venues.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
 
         data = Homepage.objects.reverse()
         with open(ABS_PATH('publish') + '/homepage.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
+
+        content = render_to_string('sitemap.xml', {'events': events, 'artists', artists, 'venues': venues})
+        with open(ABS_PATH('publish') + '/sitemap.xml', 'w') as static_file:
+            static_file.write(content)
 
         f = open(ABS_PATH('publish') + '/events.json','rb')
         conn.upload('publish/events.json',f)
@@ -86,6 +90,8 @@ def write_files(request):
         conn.upload('publish/venues.json',f)
         f = open(ABS_PATH('publish') + '/homepage.json','rb')
         conn.upload('publish/homepage.json',f)
+        f = open(ABS_PATH('publish') + '/sitemap.xml','rb')
+        conn.upload('publish/sitemap.xml',f)
 
         message = 'All data published successfully to the live site.'
 
