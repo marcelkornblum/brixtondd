@@ -74,6 +74,8 @@ def write_files(request):
 
         f = open(ABS_PATH('publish') + '/events.json','rb')
         conn.upload('publish/events.json',f)
+        f = open(ABS_PATH('publish') + '/list.html','rb')
+        conn.upload('publish/list.html',f)
         f = open(ABS_PATH('publish') + '/artists.json','rb')
         conn.upload('publish/artists.json',f)
         f = open(ABS_PATH('publish') + '/artworks.json','rb')
