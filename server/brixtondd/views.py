@@ -48,7 +48,7 @@ def write_files(request):
         with open(ABS_PATH('publish') + '/events.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
 
-        content = render_to_string('list.html', {'events': events})
+        content = render_to_string('list.html', {'events': data})
         with open(ABS_PATH('publish') + '/list.html', 'w') as static_file:
             static_file.write(content)
 
