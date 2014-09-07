@@ -1,5 +1,5 @@
 angular.module('brixtondd')
-    .controller('VenuesCtrl',function($scope, $rootScope, venuesList, eventsList, zonesList){
+    .controller('VenuesCtrl',function($scope, $rootScope, $state, venuesList, eventsList, zonesList){
         $scope.venues = venuesList;
         _.each($scope.venues, function (venue) {
             venue.events = _.filter(eventsList, function(evt) {

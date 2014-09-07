@@ -1,5 +1,5 @@
 angular.module('brixtondd')
-    .controller('ZoneViewCtrl',function($scope, $rootScope){
+    .controller('ZoneViewCtrl',function($scope, $rootScope,$state){
 
         $rootScope.pageTitle = 'All Zones';
         $rootScope.pageDescription = 'All zones of the Brixton Design Week festival';

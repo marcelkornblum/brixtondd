@@ -1,4 +1,4 @@
-angular.module('brixtondd').controller('ZonesCtrl',function($scope){
+angular.module('brixtondd').controller('ZonesCtrl',function($scope, $state){
 
 
         $rootScope.pageTitle = 'All Zones';

@@ -1,5 +1,5 @@
 angular.module('brixtondd')
-    .controller('DiaryCtrl',function($scope, $rootScope, eventsList){
+    .controller('DiaryCtrl',function($scope, $rootScope, $state, eventsList){
         $scope.events = _.filter(eventsList, function(evt) {
             return moment(evt.fields.end) > moment();
         });

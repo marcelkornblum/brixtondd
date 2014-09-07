@@ -15,7 +15,7 @@
         </ul>
         <ul class="list-group">
             <li class="list-group-item">
-                <h4 class="list-group-item-heading">Details</h4>
+                <!-- <h4 class="list-group-item-heading">Details</h4> -->
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Venue</label>
@@ -51,7 +51,7 @@
             <h3 class="panel-title">Designers at this event</h3>
         </div>
         <div class="list-group">
-            <span ng-repeat="artist in artists" itemscope itemtype="http://schema.org/Person">
+            <span ng-repeat="artist in artists" itemprop="performer" itemscope itemtype="http://schema.org/Person">
                 <a ui-sref="root.artists.view({ id: artist.pk })" class="list-group-item" itemprop="url">
                     <span itemprop="name">{{artist.fields.name}}</span>
                 </a>

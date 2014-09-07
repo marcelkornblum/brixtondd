@@ -1,5 +1,5 @@
 angular.module('events')
-    .controller('EventListCtrl',function($scope){
+    .controller('EventListCtrl',function($scope, $rootScope, $state){
 
 
         $rootScope.pageTitle = 'All Events';

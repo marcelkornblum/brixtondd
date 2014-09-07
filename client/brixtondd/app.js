@@ -17,6 +17,16 @@ angular.module('brixtondd')
         });
     })
 
+    // .config(function ($provide) {
+    //     $provide.decorator('$uiViewScroll', function ($delegate) {
+    //         return function (uiViewElement) {
+    //             // var top = uiViewElement.getBoundingClientRect().top;
+    //             window.scrollTo(0, 0);
+    //             // Or some other custom behaviour...
+    //         };
+    //     });
+    // });
+
 angular.module('brixtondd')
     .run(function($rootScope) {
         $rootScope.safeApply = function(fn) {
@@ -38,10 +48,11 @@ angular.module('brixtondd')
         $rootScope.pageType = 'website';
     })
 
-    // .run(function($rootScope, $state) {
-    //     $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-    //         console.log('statechange');
-    //         $rootScope.lastState = fromState;
-    //         $rootScope.lastParams = fromParams;
-    //     });
-    // });
+    .run(function($rootScope, $state, $window, $timeout) {
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            $window.scrollTo(0,0);
+            $timeout(function() {
+                $window.scrollTo(0,0);
+            }, 200);
+        });
+    });

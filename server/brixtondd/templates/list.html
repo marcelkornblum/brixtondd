@@ -1,2 +1,73 @@
-hello you!<br>
-{{ some_key }}
+<!DOCTYPE html>
+<html ng-app="brixtondd">
+<head>
+    <title>Brixton Design Week</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="Part of the London Design Festival, the Brixton Design Week 2014 mobile website lists all event details, as well as all designer and venue information.">
+    <meta property="og:title" content="Full event sheet" />
+    <meta property="og:site_name" content="Brixton Design Week 2014" />
+    <meta property="og:url" content="http://brixtondesignweek.com/#/events" />
+    <meta property="og:description" content="All events at the Brixton Design week" />
+    <meta property="og:image" content="http://brixtondesignweek.com/bdw-logo.gif" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="http://brixtondesignweek.com/#/events">
+    <meta name="twitter:title" content="Full event sheet">
+    <meta name="twitter:description" content="All events at the Brixton Design week">
+    <meta name="twitter:image" content="http://brixtondesignweek.com/bdw-logo.gif">
+    <link rel="author" href="https://plus.google.com/+MarcelKornblumsPage"/>
+    <link href="http://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <style type="text/css">
+        body {
+            font-family:sans-serif;
+            color:#333;
+        }
+        tr:hover {
+            background-color: #ccc;
+        }
+        a {
+            color: #333;
+            text-decoration: none;
+        }
+        thead {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+
+<h1>Brixton Design Week Events</h1>
+<table cellpadding="0" cellspacing="0" style="width:100%;">
+    <thead>
+        <tr>
+            <td>Event</td>
+            <td>Venue</td>
+            <td>Start</td>
+            <td>End</td>
+            <td>Designer(s)</td>
+        </tr>
+    </thead>
+    <tbody>
+    {% for event in events %}
+        <tr itemscope itemtype="http://schema.org/Event">
+            <td>
+                <a href="http://brixtondesignweek.com/#/events/view/{{event.pk}}"><span itemprop="name">{{event.name}}</span></a>
+            </td>
+            <td itemprop="location" itemscope itemtype="http://schema.org/Place">
+                <a href="http://brixtondesignweek.com/#/venues/view/{{event.venue.pk}}"><span itemprop="name">{{event.venue.name}}</span></a><br>
+                <span itemprop="address">{{event.venue.address}}</span></td>
+            <td itemprop="startDate" itemprop="doorTime">{{event.start}}</td>
+            <td itemprop="endDate">{{event.end}}</td>
+            <td>{% for designer in event.artists.all %}
+                <div itemprop="performer" itemscope itemtype="http://schema.org/Person">
+                <a href="http://brixtondesignweek.com/#/designers/view/{{designer.pk}}" itemprop="url"><span itemprop="name">{{designer.name}}</span></a><br>
+                </div>
+            {% endfor %}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+</body>

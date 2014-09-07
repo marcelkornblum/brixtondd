@@ -1,5 +1,5 @@
 angular.module('brixtondd')
-    .controller('ArtistsCtrl',function($scope, $rootScope, artistsList, eventsList){
+    .controller('ArtistsCtrl',function($scope, $rootScope, $state, artistsList, eventsList){
         $scope.artists = artistsList;
 
         _.each($scope.artists, function (artist) {

@@ -1,5 +1,5 @@
 angular.module('brixtondd')
-    .controller('SearchCtrl',function($scope, $q, events, venues, artists, artworks, zones){
+    .controller('SearchCtrl',function($scope, $q, $state, events, venues, artists, artworks, zones){
 
         $scope.searchText = '';
 

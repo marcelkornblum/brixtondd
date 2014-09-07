@@ -25,13 +25,11 @@ def home(request):
 
 def list(request):
     events = Event.objects.select_related().order_by('start')
-    artists = Artist.objects.all()
-    zones = Zone.objects.all()
-    venues = Venue.objects.all()
-    artwork = Artwork.objects.all()
-    homepage = Homepage.objects.reverse()
+    for event in events:
+        # event.artists = list(event.artists)
+        print(repr(event.artists))
 
-    context = {'some_key': 'Hello'}
+    context = {'events': events}
 
     content = render_to_string('list.html', context)
     with open(ABS_PATH('publish') + '/list.html', 'w') as static_file:

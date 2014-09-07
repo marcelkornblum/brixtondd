@@ -6,7 +6,7 @@
             <h3 class="panel-title" itemprop="name">{{artist.fields.name}}</h3>
         </div>
         <ul class="list-group">
-            <li class="list-group-item" ng-show="artist.fields.photo && artist.fields.photo !== ''" itemscope itemtype="http://schema.org/ImageObject" itemprop="image">
+            <li class="list-group-item" ng-show="artist.fields.photo && artist.fields.photo !== ''" itemscope itemtype="http://schema.org/ImageObject" itemprop="image" style="padding:0;text-align: center;">
                 <img src="http://brixtondesignweek.com/{{artist.fields.photo}}" itemprop="contentUrl">
             </li>
             <li class="list-group-item" ng-show="artist.fields.description && artist.fields.description !== ''">
@@ -23,7 +23,7 @@
             <h3 class="panel-title">Events with this designer</h3>
         </div>
         <div class="list-group">
-            <span ng-repeat="event in events" itemscope itemtype="http://schema.org/Event">
+            <span ng-repeat="event in events" itemprop="performerIn" itemscope itemtype="http://schema.org/Event">
                 <a ui-sref="root.events.view({ id: event.pk })" class="list-group-item" itemprop="url">
                     <span itemprop="name">{{event.fields.name}}</span>
                 </a>
