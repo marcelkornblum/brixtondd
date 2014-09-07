@@ -15,5 +15,11 @@ angular.module('brixtondd')
                 $scope.events = e;
             });
 
+        $rootScope.pageTitle = $scope.venue.fields.name;
+        $rootScope.pageDescription = $scope.venue.fields.description;
+        $rootScope.pageImage = 'http://brixtondesignweek.com/' + $scope.venue.fields.photo;
+        $rootScope.pageUrl = 'http://brixtondesignweek.com/' + $state.href($state.current);
+        $rootScope.pageType = 'place';
+
         // $anchorScroll();
     });

@@ -1,25 +1,25 @@
-<div class="col-md-12">
+<div class="col-md-12" itemscop itemtype="http://schema.org/Place">
     <page-header title="venue details" back="true"></page-header>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{venue.fields.name}}</h3>
+            <h3 class="panel-title" itemprop="name">{{venue.fields.name}}</h3>
         </div>
         <ul class="list-group">
             <li class="list-group-item">
                 <h4 class="list-group-item-heading">Address</h4>
-                <p class="list-group-item-text"><a href="http://maps.google.com/maps?q={{venue.fields.address}}">{{venue.fields.address}}</a><a class="btn btn-default pull-right pull-up" href="http://maps.google.com/maps?q={{venue.fields.address}}"><span class="glyphicon glyphicon-map-marker"></span> Map</a></p>
+                <p class="list-group-item-text"><a href="http://maps.google.com/maps?q={{venue.fields.address}}" itemprop="name">{{venue.fields.address}}</a><a class="btn btn-default pull-right pull-up" href="http://maps.google.com/maps?q={{venue.fields.address}}"><span class="glyphicon glyphicon-map-marker"></span> Map</a></p>
                 <!-- <p><a ui-sref="root.zones.view({ id: venue.zone.pk })"><span class="badge" style="background-color: #{{venue.zone.fields.colourCode}}">{{venue.zone.fields.name}}</span></a></p> -->
                 <p><span class="badge" style="background-color: #{{venue.zone.fields.colourCode}}">{{venue.zone.fields.name}}</span></p>
             </li>
-            <li class="list-group-item" ng-show="venue.fields.photo && venue.fields.photo !== ''">
-                <img src="http://brixtondesignweek.com/{{venue.fields.photo}}">
+            <li class="list-group-item" ng-if="venue.fields.photo && venue.fields.photo !== ''">
+                <img src="http://brixtondesignweek.com/{{venue.fields.photo}}" itemprop="image">
             </li>
             <li class="list-group-item" ng-show="venue.fields.description && venue.fields.description !== ''">
-                <p>{{venue.fields.description}}</p>
+                <p itemprop="description">{{venue.fields.description}}</p>
             </li>
-            <li class="list-group-item" ng-show="venue.fields.link && venue.fields.link !== ''">
-                <p><a href="{{venue.fields.link}}" target="_blank">{{venue.fields.link}}</a></p>
+            <li class="list-group-item" ng-if="venue.fields.link && venue.fields.link !== ''">
+                <p><a href="{{venue.fields.link}}" target="_blank" itemprop="url">{{venue.fields.link}}</a></p><span ng-hide="true" itemprop="url">{{pageUrl}}</span>
             </li>
         </ul>
     </div>
@@ -29,9 +29,11 @@
             <h3 class="panel-title">Events at this venue</h3>
         </div>
         <div class="list-group">
-            <a ng-repeat="event in events" ui-sref="root.events.view({ id: event.pk })" class="list-group-item">
-                {{event.fields.name}}
-            </a>
+            <span ng-repeat="event in events" itemscope itemtype="http://schema.org/Event">
+                <a ui-sref="root.events.view({ id: event.pk })" class="list-group-item" itemprop="url">
+                    <span itemprop="name">{{event.fields.name}}</span>
+                </a>
+            </span>
         </div>
     </div>
 </div>

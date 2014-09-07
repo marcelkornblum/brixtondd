@@ -1,17 +1,17 @@
-<div class="col-md-12">
+<div class="col-md-12" itemscope itemtype="http://schema.org/Event">
     <page-header title="event details" back="true"></page-header>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{evt.fields.name}}</h3>
+            <h3 class="panel-title" itemprop="name">{{evt.fields.name}}</h3>
         </div>
         <ul class="list-group">
             <li class="list-group-item" ng-show="evt.fields.description && evt.fields.description !== ''">
-                <p>{{evt.fields.description}}</p>
+                <p itemprop="description">{{evt.fields.description}}</p>
             </li>
-            <li class="list-group-item" ng-show="evt.fields.link && evt.fields.link !== ''">
-                <p><a href="{{evt.fields.link}}" target="_blank">{{evt.fields.link}}</a></p>
-            </li>
+            <li class="list-group-item" ng-if="evt.fields.link && evt.fields.link !== ''">
+                <p><a href="{{evt.fields.link}}" target="_blank" itemprop="url">{{evt.fields.link}}</a></p>
+            </li><span itemprop="url" ng-hide="true">{{pageUrl}}</span>
         </ul>
         <ul class="list-group">
             <li class="list-group-item">
@@ -19,20 +19,20 @@
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Venue</label>
-                        <div class="col-xs-9">
-                            <button ng-click="venuePage(venue.pk)" class="btn btn-default btn-wide">{{venue.fields.name}} <span class="glyphicon glyphicon-chevron-right pull-right"></span> </button>
+                        <div class="col-xs-9" itemprop="location" itemscope itemtype="http://schema.org/Place">
+                            <a ui-sref="root.venues.view({ id: venue.pk })" class="btn btn-default btn-wide" itemprop="url">{{venue.fields.name}} <span class="glyphicon glyphicon-chevron-right pull-right"></span> </a>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">From</label>
                         <div class="col-xs-9">
-                        <p class="control-label">{{evt.fields.startStr}}</p>
+                        <p class="control-label">{{evt.fields.startStr}}</p><span ng-hide="true" itemprop="startDate">{{evt.fields.start}}</span><span ng-hide="true" itemprop="doorTime">{{evt.fields.start}}</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-xs-3 control-label">To</label>
                         <div class="col-xs-9">
-                        <p class="control-label">{{evt.fields.endStr}}</p>
+                        <p class="control-label">{{evt.fields.endStr}}</p><span ng-hide="true" itemprop="endDate">{{evt.fields.end}}</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -51,9 +51,11 @@
             <h3 class="panel-title">Designers at this event</h3>
         </div>
         <div class="list-group">
-            <a ng-repeat="artist in artists" ui-sref="root.artists.view({ id: artist.pk })" class="list-group-item">
-                {{artist.fields.name}}
-            </a>
+            <span ng-repeat="artist in artists" itemscope itemtype="http://schema.org/Person">
+                <a ui-sref="root.artists.view({ id: artist.pk })" class="list-group-item" itemprop="url">
+                    <span itemprop="name">{{artist.fields.name}}</span>
+                </a>
+            </span>
         </div>
     </div>
 </div>

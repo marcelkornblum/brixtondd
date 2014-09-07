@@ -1,5 +1,5 @@
 angular.module('brixtondd')
-    .controller('DiaryCtrl',function($scope, eventsList){
+    .controller('DiaryCtrl',function($scope, $rootScope, eventsList){
         $scope.events = _.filter(eventsList, function(evt) {
             return moment(evt.fields.end) > moment();
         });
@@ -15,4 +15,9 @@ angular.module('brixtondd')
         });
 
         $scope.now = moment().calendar();
+
+        $rootScope.pageTitle = 'All Upcoming Events';
+        $rootScope.pageDescription = 'All forthcoming events at the Brixton Design Week';
+        // $rootScope.pageImage = 'http://brixtondesignweek.com/' + $scope.artist.fields.photo;
+        $rootScope.pageUrl = 'http://brixtondesignweek.com/' + $state.href($state.current);
     });

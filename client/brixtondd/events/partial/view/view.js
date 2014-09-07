@@ -1,5 +1,5 @@
 angular.module('events')
-    .controller('EventViewCtrl',function($scope, $state, $stateParams, $anchorScroll, eventsList, artistsList, venuesList){
+    .controller('EventViewCtrl',function($scope, $rootScope, $state, $stateParams, $anchorScroll, eventsList, artistsList, venuesList){
         $scope.id = +$stateParams.id;
         $scope.evt = _.find(eventsList, function(evt) {
             return evt.pk == $scope.id;
@@ -26,6 +26,12 @@ angular.module('events')
             var icsMSG = "BEGIN:VCALENDAR\nVERSION:1.0\nBEGIN:VEVENT\nDTSTART:" + moment($scope.evt.fields.start).format('YYYYMMDDThhmmss') + "\nDTEND:" + moment($scope.evt.fields.end).format('YYYYMMDDThhmmss') + "\nLOCATION:" + $scope.venue.fields.address + "\nSUMMARY:" + $scope.evt.fields.name + "\nDESCRIPTION:" + $scope.evt.fields.description + "\nPRIORITY:3\nEND:VEVENT\nEND:VCALENDAR";
             window.open( "data:text/calendar;charset=utf8," + escape(icsMSG));
         };
+
+        $rootScope.pageTitle = $scope.evt.fields.name;
+        $rootScope.pageDescription = $scope.evt.fields.description;
+        // $rootScope.pageImage = 'http://brixtondesignweek.com/' + $scope.artist.fields.photo;
+        $rootScope.pageUrl = 'http://brixtondesignweek.com/' + $state.href($state.current);
+        $rootScope.pageType = 'event';
 
 
         // $anchorScroll();

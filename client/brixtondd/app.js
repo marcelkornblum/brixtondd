@@ -29,6 +29,13 @@ angular.module('brixtondd')
                 this.$apply(fn);
             }
         };
+
+
+        $rootScope.pageTitle = 'Brixton Design Week';
+        $rootScope.pageImage = 'http://brixtondesignweek.com/bdw-logo.gif';
+        $rootScope.pageDescription = 'Part of the London Design Festival, the Brixton Design Week 2014 mobile website lists all event details, as well as all designer and venue information.';
+        $rootScope.pageUrl = 'http://brixtondesignweek.com';
+        $rootScope.pageType = 'website';
     })
 
     // .run(function($rootScope, $state) {

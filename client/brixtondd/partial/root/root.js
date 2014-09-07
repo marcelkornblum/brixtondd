@@ -1,4 +1,4 @@
-angular.module('brixtondd').controller('RootCtrl',function($scope){
+angular.module('brixtondd')
+    .controller('RootCtrl',function($scope){
 
-
-});
+    });

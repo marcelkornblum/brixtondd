@@ -1,5 +1,5 @@
 angular.module('brixtondd')
-    .controller('VenuesCtrl',function($scope, venuesList, eventsList, zonesList){
+    .controller('VenuesCtrl',function($scope, $rootScope, venuesList, eventsList, zonesList){
         $scope.venues = venuesList;
         _.each($scope.venues, function (venue) {
             venue.events = _.filter(eventsList, function(evt) {
@@ -11,5 +11,9 @@ angular.module('brixtondd')
             venue.numEvents = venue.events.length;
         });
 
-        console.log($scope.venues);
+        $rootScope.pageTitle = 'All Venues';
+        $rootScope.pageDescription = 'All venues participating the Brixton Design Week festival';
+        // $rootScope.pageImage = 'http://brixtondesignweek.com/' + $scope.venue.fields.photo;
+        $rootScope.pageUrl = 'http://brixtondesignweek.com/' + $state.href($state.current);
+        // $rootScope.pageType = 'place';
     });

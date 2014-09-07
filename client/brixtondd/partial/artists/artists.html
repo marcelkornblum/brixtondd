@@ -2,10 +2,12 @@
     <page-header title="designers"></page-header>
 
     <div class="list-group">
-        <a ng-repeat="artist in artists | orderBy:artist.name" ui-sref="root.artists.view({ id: artist.pk })" class="list-group-item">
-            <span class="badge">{{artist.numEvents}}</span>
-            <img src="http://brixtondesignweek.com/{{artist.fields.thumbnail}}" width="100" height="100">
-            <h4 style="display:inline;">{{artist.fields.name}}</h4>
-        </a>
+        <span  ng-repeat="artist in artists | orderBy:artist.name" itemscope itemtype="http::/schema.org/Person">
+            <a ui-sref="root.artists.view({ id: artist.pk })" class="list-group-item" itemprop="url">
+                <span class="badge">{{artist.numEvents}}</span>
+                <img src="http://brixtondesignweek.com/{{artist.fields.thumbnail}}" width="100" height="100">
+                <h4 style="display:inline;" itemprop="name">{{artist.fields.name}}</h4>
+            </a>
+        </span>
     </div>
 </div>

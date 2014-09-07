@@ -1,5 +1,7 @@
 from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.template.context import RequestContext
+from django.template.loader import render_to_string
 from django.core import serializers
 from django.http import HttpResponse
 from brixtondd.settings import ABS_PATH, AWS_STORAGE_BUCKET_NAME, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY
@@ -20,6 +22,24 @@ def home(request):
 
     payload = serializers.serialize("json", data)
     return HttpResponse(payload, content_type="application/json")
+
+def list(request):
+    events = Event.objects.select_related().order_by('start')
+    artists = Artist.objects.all()
+    zones = Zone.objects.all()
+    venues = Venue.objects.all()
+    artwork = Artwork.objects.all()
+    homepage = Homepage.objects.reverse()
+
+    context = {'some_key': 'Hello'}
+
+    content = render_to_string('list.html', context)
+    with open(ABS_PATH('publish') + '/list.html', 'w') as static_file:
+        static_file.write(content)
+
+    return render(request, 'list.html', context)
+
+    # return HttpResponse(payload)
 
 def write_files(request):
     if request.user.is_authenticated():

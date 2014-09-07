@@ -1,20 +1,20 @@
-<div class="col-md-12">
+<div class="col-md-12" itemscope itemtype="http://schema.org/Person">
     <page-header title="designer details" back="true"></page-header>
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">{{artist.fields.name}}</h3>
+            <h3 class="panel-title" itemprop="name">{{artist.fields.name}}</h3>
         </div>
         <ul class="list-group">
-            <li class="list-group-item" ng-show="artist.fields.photo && artist.fields.photo !== ''">
-                <img src="http://brixtondesignweek.com/{{artist.fields.photo}}">
+            <li class="list-group-item" ng-show="artist.fields.photo && artist.fields.photo !== ''" itemscope itemtype="http://schema.org/ImageObject" itemprop="image">
+                <img src="http://brixtondesignweek.com/{{artist.fields.photo}}" itemprop="contentUrl">
             </li>
             <li class="list-group-item" ng-show="artist.fields.description && artist.fields.description !== ''">
-                <p>{{artist.fields.description}}</p>
+                <p itemprop="description">{{artist.fields.description}}</p>
             </li>
-            <li class="list-group-item" ng-show="artist.fields.link && artist.fields.link !== ''">
-                <p><a href="{{artist.fields.link}}" target="_blank">{{artist.fields.link}}</a></p>
-            </li>
+            <li class="list-group-item" ng-if="artist.fields.link && artist.fields.link !== ''">
+                <p><a href="{{artist.fields.link}}" target="_blank" itemprop="url">{{artist.fields.link}}</a></p>
+            </li><span ng-hide="true" itemprop="url">{{pageUrl}}</span>
         </ul>
     </div>
 
@@ -23,9 +23,11 @@
             <h3 class="panel-title">Events with this designer</h3>
         </div>
         <div class="list-group">
-            <a ng-repeat="event in events" ui-sref="root.events.view({ id: event.pk })" class="list-group-item">
-                {{event.fields.name}}
-            </a>
+            <span ng-repeat="event in events" itemscope itemtype="http://schema.org/Event">
+                <a ui-sref="root.events.view({ id: event.pk })" class="list-group-item" itemprop="url">
+                    <span itemprop="name">{{event.fields.name}}</span>
+                </a>
+            </span>
         </div>
     </div>
 
