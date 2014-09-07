@@ -72,7 +72,7 @@ def write_files(request):
         with open(ABS_PATH('publish') + '/homepage.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
 
-        content = render_to_string('sitemap.xml', {'events': events, 'artists', artists, 'venues': venues})
+        content = render_to_string('sitemap.xml', {'events': events, 'artists': artists, 'venues': venues})
         with open(ABS_PATH('publish') + '/sitemap.xml', 'w') as static_file:
             static_file.write(content)
 
