@@ -4,7 +4,8 @@
     <div class="list-group">
         <a ng-repeat="artist in artists | orderBy:artist.name" ui-sref="root.artists.view({ id: artist.pk })" class="list-group-item">
             <span class="badge">{{artist.numEvents}}</span>
-            <img src="http://brixtondesignweek.com/{{artist.fields.thumbnail}}" width="100" height="100"> {{artist.fields.name}}
+            <img src="http://brixtondesignweek.com/{{artist.fields.thumbnail}}" width="100" height="100">
+            <h4 style="display:inline;">{{artist.fields.name}}</h4>
         </a>
     </div>
 </div>

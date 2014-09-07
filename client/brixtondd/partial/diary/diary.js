@@ -16,9 +16,3 @@ angular.module('brixtondd')
 
         $scope.now = moment().calendar();
     });
-
-
-
-            var evts = _.filter(eventsList, function(evt) {
-                return _.indexOf(evt.fields.artists, +artist.pk) >= 0;
-            });

@@ -46,7 +46,7 @@ def write_files(request):
         with open(ABS_PATH('publish') + '/venues.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
 
-        data = Homepage.objects.reverse()[0]
+        data = Homepage.objects.reverse()
         with open(ABS_PATH('publish') + '/homepage.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
 

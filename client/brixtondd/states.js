@@ -17,6 +17,9 @@ angular.module('brixtondd')
                 },
                 eventsList: function(events) {
                     return events.getList();
+                },
+                zonesList: function(zones) {
+                    return zones.getList();
                 }
             },
             children: [
@@ -79,6 +82,27 @@ angular.module('brixtondd')
                                     templateUrl: 'partial/artwork-view/artwork-view.html'
                                 }
                             ]
+                        }
+                    ]
+                },
+                {
+                    name: 'zones',
+                    abstract: true,
+                    url: '/zones',
+                    controller: 'ZonesCtrl',
+                    templateUrl: 'partial/abstract.html',
+                    children: [
+                        {
+                            name: 'list',
+                            url: '',
+                            controller: 'ZonesCtrl',
+                            templateUrl: 'partial/zones/zones.html',
+                        },
+                        {
+                            name: 'view',
+                            url: '/view/:id',
+                            controller: 'ZoneViewCtrl',
+                            templateUrl: 'partial/zone-view/zone-view.html',
                         }
                     ]
                 },

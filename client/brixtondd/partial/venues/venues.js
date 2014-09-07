@@ -1,11 +1,15 @@
 angular.module('brixtondd')
-    .controller('VenuesCtrl',function($scope, venuesList, eventsList){
+    .controller('VenuesCtrl',function($scope, venuesList, eventsList, zonesList){
         $scope.venues = venuesList;
         _.each($scope.venues, function (venue) {
-            var evts = _.filter(eventsList, function(evt) {
+            venue.events = _.filter(eventsList, function(evt) {
                 return +evt.fields.venue === +venue.pk;
             });
-            venue.numEvents = evts.length;
-            venue.events = evts;
+            venue.zone = _.find(zonesList, function(zone) {
+                return +venue.fields.zone === +zone.pk;
+            });
+            venue.numEvents = venue.events.length;
         });
+
+        console.log($scope.venues);
     });
