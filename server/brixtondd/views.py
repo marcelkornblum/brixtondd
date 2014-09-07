@@ -14,8 +14,9 @@ def home(request):
     zones = Zone.objects.all()
     venues = Venue.objects.all()
     artwork = Artwork.objects.all()
+    homepage = Homepage.objects.reverse()
 
-    data = list(events) + list(artists) + list(artwork) + list(zones) + list(venues)
+    data = list(events) + list(artists) + list(artwork) + list(zones) + list(venues) + list(homepage)
 
     payload = serializers.serialize("json", data)
     return HttpResponse(payload, content_type="application/json")
@@ -45,6 +46,10 @@ def write_files(request):
         with open(ABS_PATH('publish') + '/venues.json', 'w') as out:
             json_serializer.serialize(data, stream=out)
 
+        data = Homepage.objects.reverse()[0]
+        with open(ABS_PATH('publish') + '/homepage.json', 'w') as out:
+            json_serializer.serialize(data, stream=out)
+
         f = open(ABS_PATH('publish') + '/events.json','rb')
         conn.upload('publish/events.json',f)
         f = open(ABS_PATH('publish') + '/artists.json','rb')
@@ -55,6 +60,8 @@ def write_files(request):
         conn.upload('publish/zones.json',f)
         f = open(ABS_PATH('publish') + '/venues.json','rb')
         conn.upload('publish/venues.json',f)
+        f = open(ABS_PATH('publish') + '/homepage.json','rb')
+        conn.upload('publish/homepage.json',f)
 
         message = 'All data published successfully to the live site.'
 

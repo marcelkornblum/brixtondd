@@ -10,9 +10,15 @@ angular.module('brixtondd')
         // console.log('diary', eventsList);
 
         _.each($scope.events, function (evt) {
-            evt.fields.startStr = moment(evt.fields.start).format("hh:mm MMM D");
-            evt.fields.endStr = moment(evt.fields.end).format("hh:mm MMM D");
+            evt.fields.startStr = moment(evt.fields.start).format("HH:mm MMM D");
+            evt.fields.endStr = moment(evt.fields.end).format("HH:mm MMM D");
         });
 
         $scope.now = moment().calendar();
     });
+
+
+
+            var evts = _.filter(eventsList, function(evt) {
+                return _.indexOf(evt.fields.artists, +artist.pk) >= 0;
+            });

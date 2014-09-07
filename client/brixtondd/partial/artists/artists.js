@@ -8,5 +8,8 @@ angular.module('brixtondd')
             });
             artist.numEvents = evts.length;
             artist.events = evts;
+            if (!angular.isDefined(artist.fields.thumbnail) || artist.fields.thumbnail == '') {
+                artist.fields.thumbnail = 'artistImages/bdw-logo.gif';
+            }
         });
     });

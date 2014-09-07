@@ -6,8 +6,11 @@
             <h3 class="panel-title">{{evt.fields.name}}</h3>
         </div>
         <ul class="list-group">
-            <li class="list-group-item" ng-show="evt.fields.description !== ''">
+            <li class="list-group-item" ng-show="evt.fields.description && evt.fields.description !== ''">
                 <p>{{evt.fields.description}}</p>
+            </li>
+            <li class="list-group-item" ng-show="evt.fields.link && evt.fields.link !== ''">
+                <p><a href="{{evt.fields.link}}" target="_blank">{{evt.fields.link}}</a></p>
             </li>
         </ul>
         <ul class="list-group">
@@ -43,7 +46,7 @@
         </ul>
     </div>
 
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-show="artists.length > 0">
         <div class="panel-heading">
             <h3 class="panel-title">Designers at this event</h3>
         </div>

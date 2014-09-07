@@ -22,23 +22,12 @@
 /* Required for Angular UI Bootstrap */
 .nav, .pagination, .carousel a { cursor: pointer; }
 
-/* Personal preference for BS modal.  The LESS below makes the backdrop white and
-   causes the modal to fade in rather than slide in. */
-//@modal-backdrop-bg: white;
-//.modal {
-//	&.fade {
-//		.transition(opacity .3s);
-//	}
-//	&.fade .modal-dialog {
-//		.translate(0,0);
-//	}
-//}
-
 @icon-font-path:          "/fonts/";
+@navbar-height: 70px;
 
 body {
-    margin-top: @navbar-height + 20;
-    margin-bottom: @navbar-height + 20;
+    margin-top: @navbar-height;
+    margin-bottom: @navbar-height;
 }
 
 .navbar-header,
@@ -51,6 +40,10 @@ body {
     text-align: center;
 }
 
+.navbar-fixed-top {
+    min-height: 50px;
+}
+
 .navbar-fixed-top .container {
     text-align: center;
 }
@@ -60,6 +53,7 @@ body {
     font-weight: bold;
     margin: 15px 20px;
     text-transform: capitalize;
+    color: #fff;
 }
 
 // back button
@@ -77,10 +71,16 @@ body {
     padding: 6px 12px;
     text-align: center;
     vertical-align: middle;
+    color: #000;
 }
 
 .nav-pills .dropdown-menu > li > a {
     padding: 15px 20px;
+}
+
+.navbar-fixed-bottom a .glyphicon {
+    font-size: 1.4em;
+    color: #fff;
 }
 
 .form-control {
@@ -102,4 +102,14 @@ h4.list-group-item-heading {
 
 .form-horizontal p.control-label {
     text-align: left;
+}
+
+.list-group-item > img {
+    max-width: 100%;
+    max-height: 90%;
+}
+
+.pull-up {
+    position: relative;
+    top: -20px;
 }

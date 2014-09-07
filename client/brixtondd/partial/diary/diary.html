@@ -17,8 +17,8 @@
     <div class="list-group">
         <a ng-repeat="event in events | orderBy:sortField.orderBy" ui-sref="root.events.view({ id: event.pk })" class="list-group-item">
             <h4 class="list-group-item-heading">{{event.fields.name}}</h4>
-            <p class="list-group-item-text">{{event.fields.description}}</p>
-            <p class="pull-right">{{event.fields.startStr}} - {{event.fields.toCome}}</p>
+            <!-- <p class="list-group-item-text">{{event.fields.description}}</p> -->
+            <p class="pull-right pull-up">{{event.fields.startStr}} - {{event.fields.endStr}}</p>
         </a>
     </div>
 
