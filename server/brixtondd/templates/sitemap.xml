@@ -22,7 +22,7 @@
     {% for event in events %}
     <url>
       <loc>http://brixtondesignweek.com/#/events/view/{{event.pk}}</loc>
-      <lastmod>{{event.updated}}</lastmod>
+      <lastmod>{{event.updated|date:"c"}}</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     {% endfor %}
@@ -34,7 +34,7 @@
     {% for artist in artists %}
     <url>
       <loc>http://brixtondesignweek.com/#/artists/view/{{artist.pk}}</loc>
-      <lastmod>{{artist.updated}}</lastmod>
+      <lastmod>{{artist.updated|date:"c"}}</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     {% endfor %}
@@ -46,7 +46,7 @@
     {% for venue in venues %}
     <url>
       <loc>http://brixtondesignweek.com/#/venue/view/{{venue.pk}}</loc>
-      <lastmod>{{venue.updated}}</lastmod>
+      <lastmod>{{venue.updated|date:"c"}}</lastmod>
       <changefreq>weekly</changefreq>
     </url>
     {% endfor %}
