@@ -53,6 +53,6 @@ angular.module('brixtondd')
             $window.scrollTo(0,0);
             $timeout(function() {
                 $window.scrollTo(0,0);
-            }, 200);
+            }, 500);
         });
     });

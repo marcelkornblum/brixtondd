@@ -10,7 +10,7 @@
                 <p itemprop="description">{{evt.fields.description}}</p>
             </li>
             <li class="list-group-item" ng-if="evt.fields.link && evt.fields.link !== ''">
-                <p><a href="{{evt.fields.link}}" target="_blank" itemprop="url">{{evt.fields.link}}</a></p>
+                <p style="margin:0"><a href="{{evt.fields.link}}" target="_blank" itemprop="url">{{evt.fields.link}}</a></p>
             </li><span itemprop="url" ng-hide="true">{{pageUrl}}</span>
         </ul>
         <ul class="list-group">

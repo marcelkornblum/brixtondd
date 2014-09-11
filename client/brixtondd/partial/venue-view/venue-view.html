@@ -20,7 +20,7 @@
                 <p itemprop="description">{{venue.fields.description}}</p>
             </li>
             <li class="list-group-item" ng-if="venue.fields.link && venue.fields.link !== ''">
-                <p><a href="{{venue.fields.link}}" target="_blank" itemprop="url">{{venue.fields.link}}</a></p><span ng-hide="true" itemprop="url">{{pageUrl}}</span>
+                <p style="margin:0"><a href="{{venue.fields.link}}" target="_blank" itemprop="url">{{venue.fields.link}}</a></p><span ng-hide="true" itemprop="url">{{pageUrl}}</span>
             </li>
         </ul>
     </div>

@@ -18,8 +18,8 @@ angular.module('events')
             $state.go('root.venues.view', {id: id, back: 'root.events.view({id:' + $scope.id + '})'});
         };
 
-        $scope.evt.fields.startStr = moment($scope.evt.fields.start).format("hh:mm MMM D");
-        $scope.evt.fields.endStr = moment($scope.evt.fields.end).format("hh:mm MMM D");
+        $scope.evt.fields.startStr = moment($scope.evt.fields.start).format("HH:mm MMM D");
+        $scope.evt.fields.endStr = moment($scope.evt.fields.end).format("HH:mm MMM D");
 
 
         $scope.dlIcal = function dlIcal() {

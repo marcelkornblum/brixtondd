@@ -13,7 +13,7 @@
                 <p itemprop="description">{{artist.fields.description}}</p>
             </li>
             <li class="list-group-item" ng-if="artist.fields.link && artist.fields.link !== ''">
-                <p><a href="{{artist.fields.link}}" target="_blank" itemprop="url">{{artist.fields.link}}</a></p>
+                <p style="margin:0"><a href="{{artist.fields.link}}" target="_blank" itemprop="url">{{artist.fields.link}}</a></p>
             </li><span ng-hide="true" itemprop="url">{{pageUrl}}</span>
         </ul>
     </div>
